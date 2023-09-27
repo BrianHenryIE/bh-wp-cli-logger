@@ -16,7 +16,7 @@
     <!-- Show colors -->
     <arg name="colors"/>
 
-    <exclude-pattern>/test-plugin/class-bh-wp-cli-logger.php</exclude-pattern>
+    <exclude-pattern>/test-plugin/class-wp-cli-logger.php</exclude-pattern>
     <exclude-pattern>/tests/_data/</exclude-pattern>
     <exclude-pattern>/tests/_output/</exclude-pattern>
     <exclude-pattern>/tests/_support/</exclude-pattern>

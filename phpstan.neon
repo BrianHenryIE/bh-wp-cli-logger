@@ -5,7 +5,7 @@ parameters:
         - test-plugin
     excludePaths:
         - test-plugin/vendor/*
-        - test-plugin/class-bh-wp-cli-logger.php
+        - test-plugin/class-wp-cli-logger.php
     bootstrapFiles:
         - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
     scanDirectories:

@@ -13,7 +13,7 @@ use WP_CLI;
 spl_autoload_register(
 	function ( $classname ) {
 		if ( 'BrianHenryIE\WP_CLI_Logger\WP_CLI_Logger' === $classname ) {
-			require_once __DIR__ . '/class-bh-wp-cli-logger.php';
+			require_once __DIR__ . '/class-wp-cli-logger.php';
 		}
 	}
 );

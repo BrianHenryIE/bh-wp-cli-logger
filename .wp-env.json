@@ -7,7 +7,7 @@
     }
   },
   "mappings": {
-    "wp-content/plugins/test-plugin/class-bh-wp-cli-logger.php": "./src/class-bh-wp-cli-logger.php",
+    "wp-content/plugins/test-plugin/class-wp-cli-logger.php": "./src/class-wp-cli-logger.php",
     "wp-content/plugins/test-plugin/vendor": "./vendor"
   },
   "phpVersion": "7.4"
