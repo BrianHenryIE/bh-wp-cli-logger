@@ -1,3 +1,5 @@
+[![WordPress tested 6.3](https://img.shields.io/badge/WordPress-v6.3%20tested-0073aa.svg)](#) [![PHPCS WPCS](https://img.shields.io/badge/PHPCS-WordPress%20Coding%20Standards-8892BF.svg)](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) [![PHPStan ](https://img.shields.io/badge/PHPStan-Level%208-2a5ea7.svg)](https://github.com/szepeviktor/phpstan-wordpress)
+
 # WP CLI PSR Logger
 
 A PSR logger which calls `WP_CLI::line()` with the level name coloured.
@@ -23,7 +25,6 @@ $logger->warning( 'Something happened!' );
 ```
 
 ![Something happened screenshot](./.github/something-happened.png "Screenshot of the text Warning: something happened! where the word Warning is yellow")
-
 
 * It is just a [PSR Logger Interface](https://www.php-fig.org/psr/psr-3/) implementation (aka a PSR-3 logger)
 * It does not filter above a certain level
@@ -128,9 +129,7 @@ When WP CLI commands are appended with `--debug` or more specifically `--debug=m
 
 This is currently requires `"psr/log": "^1.0"`. [v2.0](https://github.com/php-fig/log/compare/1.1.4...2.0.0) requires PHP 8.0 and introduces parameter types; [3.0](https://github.com/php-fig/log/compare/2.0.0...3.0.0) then introduces return types. 
 
-### Code Quality
 
-I've yet to write tests or run through WPCS.
 
 ## See Also
 

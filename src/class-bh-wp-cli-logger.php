@@ -1,5 +1,7 @@
 <?php
 /**
+ * A PSR log implementation which prints the log to the terminal, via WP_CLI, colorized.
+ *
  * @package brianhenryie/bh-wp-cli-logger
  */
 
@@ -35,9 +37,26 @@ class WP_CLI_Logger implements LoggerInterface {
 		LogLevel::ALERT     => '',
 		LogLevel::CRITICAL  => '',
 	);
+
+	/**
+	 * The log output implementation.
+	 *
+	 * This function is called by each of the LoggerTrait methods, e.g. `::notice()`, `::warning()`.
+	 *
+	 * @see LoggerInterface::log()
+	 * @see LogLevel
+	 *
+	 * @param string $level One of LogLevel levels (but really could be arbitrary).
+	 * @param string $message The sentence to print.
+	 * @param array  $context Array of associated data.
+	 *
+	 * @return void
+	 */
 	public function log( $level, $message, array $context = array() ) {
 
 		/**
+		 * Only run when WP CLI is active.
+		 *
 		 * @see Runner::setup_bootstrap_hooks()
 		 */
 		if ( ! did_action( 'cli_init' ) ) {
@@ -92,3 +111,4 @@ class WP_CLI_Logger implements LoggerInterface {
 			WP_CLI::line( $message );
 		}
 	}
+}

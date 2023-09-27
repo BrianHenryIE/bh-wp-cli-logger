@@ -1,6 +1,8 @@
 <?php
 /**
  * Plugin Name: BH WP CLI Logger Test Plugin
+ *
+ * @package brianhenryie/bh-wp-cli-logger
  */
 
 namespace BrianHenryIE\WP_CLI_Logger_Test_Plugin;
@@ -10,16 +12,20 @@ use WP_CLI;
 
 spl_autoload_register(
 	function ( $classname ) {
-		if( 'BrianHenryIE\WP_CLI_Logger\WP_CLI_Logger' === $classname )
+		if ( 'BrianHenryIE\WP_CLI_Logger\WP_CLI_Logger' === $classname ) {
 			require_once __DIR__ . '/class-bh-wp-cli-logger.php';
+		}
 	}
 );
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-add_action( 'cli_init', function() {
-	WP_CLI::add_command( 'cli-logger', '\BrianHenryIE\WP_CLI_Logger_Test_Plugin\test_command' );
-});
+add_action(
+	'cli_init',
+	function (): void {
+		WP_CLI::add_command( 'cli-logger', '\BrianHenryIE\WP_CLI_Logger_Test_Plugin\test_command' );
+	}
+);
 
 /**
  * Test the WP_CLI PSR logger.
@@ -48,14 +54,14 @@ add_action( 'cli_init', function() {
  *      Notice:  This is a notice log message.
  *      Debug:   This is a debug log message.
  *
- * @param string[] $args
- * @param array<string,string> $assoc_args
+ * @param string[]             $args Unnamed argv.
+ * @param array<string,string> $assoc_args Named argv.
  */
-function test_command( array $args, array $assoc_args ) {
+function test_command( array $args, array $assoc_args ): void {
 
 	$logger = new \BrianHenryIE\WP_CLI_Logger\WP_CLI_Logger();
 
-	$levels = !empty( $args ) ? $args : array(
+	$levels = ! empty( $args ) ? $args : array(
 		LogLevel::EMERGENCY,
 		LogLevel::ALERT,
 		LogLevel::CRITICAL,
@@ -66,7 +72,7 @@ function test_command( array $args, array $assoc_args ) {
 		LogLevel::DEBUG,
 	);
 
-	foreach( $levels as $level ) {
+	foreach ( $levels as $level ) {
 		$logger->log(
 			$level,
 			str_replace( '{level}', $level, $assoc_args['message'] )

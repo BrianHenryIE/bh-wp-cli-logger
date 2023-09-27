@@ -1,0 +1,17 @@
+parameters:
+    level: 8
+    paths:
+        - src
+        - test-plugin
+    excludePaths:
+        - test-plugin/vendor/*
+        - test-plugin/class-bh-wp-cli-logger.php
+    bootstrapFiles:
+        - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
+    scanDirectories:
+        - wp-content/plugins
+        - vendor/wp-cli
+    scanFiles:
+        - vendor/antecedent/patchwork/Patchwork.php
+    ignoreErrors:
+        - '#Method .* has parameter \$context with no value type specified in iterable type array.#'
