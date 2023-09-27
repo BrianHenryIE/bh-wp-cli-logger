@@ -22,7 +22,7 @@ $logger->warning( 'Something happened!' );
 ![Something happened screenshot](./.github/something-happened.png "Screenshot of the text Warning: something happened! where the word Warning is yellow")
 
 * It is just a [PSR Logger Interface](https://www.php-fig.org/psr/psr-3/) implementation (aka a PSR-3 logger)
-* It does not filter above a certain level
+* It does not filter logs to above a certain level
 * It does not record the logs anywhere
 
 There is one filter for customising the output:
@@ -122,7 +122,7 @@ When WP CLI commands are appended with `--debug` or more specifically `--debug=m
 
 ### psr/log >=2.0
 
-This is currently requires `"psr/log": "^1.0"`. [v2.0](https://github.com/php-fig/log/compare/1.1.4...2.0.0) requires PHP 8.0 and introduces parameter types; [3.0](https://github.com/php-fig/log/compare/2.0.0...3.0.0) then introduces return types. 
+This currently requires `"psr/log": "^1.0"`. [v2.0](https://github.com/php-fig/log/compare/1.1.4...2.0.0) requires PHP 8.0 and introduces parameter types; [3.0](https://github.com/php-fig/log/compare/2.0.0...3.0.0) then introduces return types. 
 
 ### Context
 
