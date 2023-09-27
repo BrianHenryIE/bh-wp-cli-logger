@@ -9,11 +9,6 @@ Allows easy separation of logic and presentation for CLI commands. I.e. no inter
 ## Install
 
 ```
-composer config minimum-stability dev
-composer config prefer-stable true
-
-composer config repositories.brianhenryie/bh-wp-cli-logger git https://github.com/brianhenryie/bh-wp-cli-logger
-
 composer require brianhenryie/bh-wp-cli-logger
 ```
 
