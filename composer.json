@@ -1,7 +1,7 @@
 {
   "name": "brianhenryie/bh-wp-cli-logger",
   "description": "A PSR logger for WP CLI commands.",
-  "license": "GPL-2.0+-or-later",
+  "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "BrianHenryIE",
