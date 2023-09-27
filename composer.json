@@ -67,8 +67,6 @@
     "squizlabs/php_codesniffer": "*",
     "szepeviktor/phpstan-wordpress": "*",
     "wordpress/wordpress": "*",
-    "wp-cli/dist-archive-command": "dev-main",
-    "wp-cli/i18n-command": "^2.4",
     "wp-cli/wp-cli-bundle": "*",
     "wp-coding-standards/wpcs": "*",
     "wpackagist-theme/twentytwenty": "*"
