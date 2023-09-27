@@ -1,0 +1,13 @@
+{
+  "name": "bh-wp-cli-logger",
+  "version": "1.0.0",
+  "description": "## Features",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@wordpress/env": "^8.7.0"
+  }
+}
