@@ -34,7 +34,7 @@ There is one filter for customising the output:
  * NB: try to use the `context` to only apply this filter to logs output by your own plugin.
  * Return null, an empty array, or an empty message to prevent output.
  *
- * @var ?array{level:string, message:string, context:array<mixed>, prepend:string, color:string} $log
+ * @var ?array{level:string, message:string, context:array<mixed>, prepend:string, ansi_color:string} $log
  */
 $log = apply_filters( 'bh_wp_cli_logger_log', $log );
 ```
