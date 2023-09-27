@@ -12,7 +12,7 @@ composer config prefer-stable true
 
 composer config repositories.brianhenryie/bh-wp-cli-logger git https://github.com/brianhenryie/bh-wp-cli-logger
 
-composer require brianhenryie/bh-wp-cli-logger --fixed
+composer require brianhenryie/bh-wp-cli-logger
 ```
 
 ## Operation
