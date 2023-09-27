@@ -29,6 +29,20 @@ $logger->warning( 'Something happened!' );
 * It does not filter above a certain level
 * It does not record the logs anywhere
 
+There is one filter for customising the output:
+
+```php
+/**
+ * Filter logs to control output style.
+ *
+ * NB: try to use the `context` to only apply this filter to logs output by your own plugin.
+ * Return null, an empty array, or an empty message to prevent output.
+ *
+ * @var ?array{level:string, message:string, context:array<mixed>, prepend:string, color:string} $log
+ */
+$log = apply_filters( 'bh_wp_cli_logger_log', $log );
+```
+
 ## Try it out
 
 ```bash
