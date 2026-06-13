@@ -6,7 +6,7 @@
 
     <!-- Check all PHP files in directory tree by default. -->
     <arg name="extensions" value="php"/>
-    <file>src</file>
+    <file>includes</file>
     <file>test-plugin</file>
     <file>tests</file>
 
@@ -16,9 +16,19 @@
     <!-- Show colors -->
     <arg name="colors"/>
 
-    <exclude-pattern>/test-plugin/class-wp-cli-logger.php</exclude-pattern>
+    <exclude-pattern>/bin/</exclude-pattern>
     <exclude-pattern>/tests/_data/</exclude-pattern>
     <exclude-pattern>/tests/_output/</exclude-pattern>
     <exclude-pattern>/tests/_support/</exclude-pattern>
+
+    <rule ref="Squiz.PHP.DisallowMultipleAssignments.Found">
+        <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+        <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.Files.FileName.InvalidClassFileName">
+        <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule>
 
 </ruleset>

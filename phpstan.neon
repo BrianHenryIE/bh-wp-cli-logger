@@ -1,11 +1,9 @@
 parameters:
     level: 8
     paths:
-        - src
+        - includes
         - test-plugin
-    excludePaths:
-        - test-plugin/vendor/*
-        - test-plugin/class-wp-cli-logger.php
+        - tests/unit
     bootstrapFiles:
         - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
     scanDirectories:
@@ -13,5 +11,9 @@ parameters:
         - vendor/wp-cli
     scanFiles:
         - vendor/antecedent/patchwork/Patchwork.php
+        - vendor/10up/wp_mock/php/WP_Mock/Action.php
+        - vendor/10up/wp_mock/php/WP_Mock/HookedCallback.php
+        - vendor/10up/wp_mock/php/WP_Mock/Filter.php
     ignoreErrors:
         - '#Method .* has parameter \$context with no value type specified in iterable type array.#'
+        - '#Call to an undefined method WP_Mock\\Action_Responder\|WP_Mock\\Filter_Responder\|WP_Mock\\HookedCallbackResponder::reply\(\)\.#'
