@@ -10,6 +10,7 @@ namespace BrianHenryIE\WP_CLI_Logger;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerTrait;
 use Psr\Log\LogLevel;
+use Stringable;
 use WP_CLI;
 
 /**
@@ -46,13 +47,11 @@ class WP_CLI_Logger implements LoggerInterface {
 	 * @see LoggerInterface::log()
 	 * @see LogLevel
 	 *
-	 * @param string $level One of LogLevel levels (but really could be arbitrary).
-	 * @param string $message The sentence to print.
-	 * @param array  $context Array of associated data.
-	 *
-	 * @return void
+	 * @param mixed             $level One of LogLevel levels (but really could be arbitrary).
+	 * @param string|Stringable $message The sentence to print.
+	 * @param array             $context Array of associated data.
 	 */
-	public function log( $level, $message, array $context = array() ) {
+	public function log( $level, string|Stringable $message, array $context = array() ) {
 
 		/**
 		 * Only run when WP CLI is active.
