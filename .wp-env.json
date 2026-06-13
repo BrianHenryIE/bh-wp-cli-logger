@@ -7,8 +7,8 @@
     }
   },
   "mappings": {
-    "wp-content/plugins/test-plugin/class-wp-cli-logger.php": "./src/class-wp-cli-logger.php",
-    "wp-content/plugins/test-plugin/vendor": "./vendor"
+    "wp-content/dev-map/vendor": "./vendor"
   },
-  "phpVersion": "7.4"
+  "phpVersion": "8.0",
+  "core": "WordPress/WordPress#7.0"
 }

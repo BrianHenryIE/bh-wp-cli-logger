@@ -99,16 +99,19 @@
   },
   "scripts": {
     "post-install-cmd": [
-      "@setup-wordpress",
-      "Kporras07\\ComposerSymlinks\\ScriptHandler::createSymlinks",
       "BrianHenryIE\\ComposerPhpStorm\\ExcludeFolders::update",
       "BrianHenryIE\\ComposerPhpStorm\\PHPUnitRunConfigurations::update"
+      "@sync-composer-wpenv"
     ],
     "post-update-cmd": [
-      "@setup-wordpress",
       "Kporras07\\ComposerSymlinks\\ScriptHandler::createSymlinks",
       "BrianHenryIE\\ComposerPhpStorm\\ExcludeFolders::update",
       "BrianHenryIE\\ComposerPhpStorm\\PHPUnitRunConfigurations::update"
+      "@sync-composer-wpenv"
+    ],
+    "sync-composer-wpenv": [
+      "php ./bin/sync-composer-wpenv.php",
+      "php ./bin/wpenv-mappings-to-phpstorm.php"
     ],
     "test-coverage": [
       "vendor/bin/codecept run unit --coverage unit.cov",
