@@ -51,7 +51,7 @@ class WP_CLI_Logger implements LoggerInterface {
 	 * @param string|Stringable $message The sentence to print.
 	 * @param array             $context Array of associated data.
 	 */
-	public function log( $level, string|Stringable $message, array $context = array() ) {
+	public function log( $level, string|Stringable $message, array $context = array() ): void {
 
 		/**
 		 * Only run when WP CLI is active.
@@ -93,21 +93,21 @@ class WP_CLI_Logger implements LoggerInterface {
 		if ( ! empty( $log['ansi_color'] ) && ! empty( $log['prepend'] ) ) {
 			WP_CLI::line(
 				WP_CLI::colorize(
-					$log['ansi_color'] . $log['prepend'] . '%n' . str_repeat( ' ', 9 - strlen( $log['prepend'] ) ) . $message
+					$log['ansi_color'] . $log['prepend'] . '%n' . str_repeat( ' ', 9 - strlen( $log['prepend'] ) ) . $log['message']
 				)
 			);
 		} elseif (
 			in_array( $log['level'], array( LogLevel::EMERGENCY, LogLevel::ALERT, LogLevel::CRITICAL ), true )
 			&& ! empty( $log['prepend'] )
 		) {
-			WP_CLI::error_multi_line( array( $log['prepend'] . ': ' . $message ) );
+			WP_CLI::error_multi_line( array( $log['prepend'] . ' ' . $log['message'] ) );
 		} elseif (
 			empty( $log['ansi_color'] ) && ! empty( $log['prepend'] ) ) {
 			WP_CLI::line(
-				$log['prepend'] . str_repeat( ' ', 9 - strlen( $log['prepend'] ) ) . $message
+				$log['prepend'] . str_repeat( ' ', 9 - strlen( $log['prepend'] ) ) . $log['message']
 			);
 		} else {
-			WP_CLI::line( $message );
+			WP_CLI::line( $log['message'] );
 		}
 	}
 }

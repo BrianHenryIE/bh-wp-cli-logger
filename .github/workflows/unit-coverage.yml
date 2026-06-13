@@ -1,8 +1,4 @@
 name: Code Coverage Report Comment
-# Coverage is measured over the unit + wpunit suites only.
-# The contract suite requires live mailbox credentials and never runs in CI (see PLAN.md rule 5).
-# The e2e suite drives a browser and produces no PHP line coverage.
-# The threshold below is a ratchet: it must not decrease. Raise it as Phase 2 adds tests.
 
 on:
   pull_request:
