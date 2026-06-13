@@ -12,10 +12,17 @@
  * @package brianhenryie/bh-wp-cli-logger
  */
 
+$vendor_dir     = __DIR__ . '/../vendor';
 $autoload_files = array(
-	__DIR__ . '/../vendor/composer/autoload_files.php',
-	__DIR__ . '/../vendor/composer/autoload_static.php',
+	$vendor_dir . '/composer/autoload_files.php',
+	$vendor_dir . '/composer/autoload_static.php',
 );
+
+// Whether Patchwork is actually installed. When it is not (e.g. a `--no-dev`
+// install) there is nothing to hoist and silence is correct; when it is, failing
+// to hoist it is a real problem worth warning about.
+$patchwork_installed = is_dir( $vendor_dir . '/antecedent/patchwork' );
+$hoisted_any         = false;
 
 foreach ( $autoload_files as $autoload_file ) {
 
@@ -27,6 +34,7 @@ foreach ( $autoload_files as $autoload_file ) {
 	$lines = file( $autoload_file );
 
 	if ( false === $lines ) {
+		fwrite( STDERR, "modify-autoload: failed to read {$autoload_file}\n" );
 		continue;
 	}
 
@@ -43,21 +51,36 @@ foreach ( $autoload_files as $autoload_file ) {
 		continue;
 	}
 
-	$patchwork_line = $lines[ $patchwork_index ];
-	unset( $lines[ $patchwork_index ] );
-	$lines = array_values( $lines );
-
-	// Move it to the beginning of the array it belongs to: insert it just after
-	// the nearest preceding line that opens an array.
-	$insert_index = 0;
+	// Find the line that opens the array enclosing the Patchwork entry. Searching
+	// before removing the entry keeps these indices valid: the opener always
+	// precedes the entry, so it is unaffected by the later removal.
+	$opener_index = null;
 	for ( $i = $patchwork_index - 1; $i >= 0; $i-- ) {
 		if ( 1 === preg_match( '/array\s*\(/', $lines[ $i ] ) ) {
-			$insert_index = $i + 1;
+			$opener_index = $i;
 			break;
 		}
 	}
 
-	array_splice( $lines, $insert_index, 0, $patchwork_line );
+	if ( null === $opener_index ) {
+		fwrite( STDERR, "modify-autoload: could not find the array opener in {$autoload_file}; skipping to avoid corrupting it\n" );
+		continue;
+	}
 
-	file_put_contents( $autoload_file, implode( '', $lines ) );
+	// Move the Patchwork entry to the top of its array, just after the opener.
+	$patchwork_line = $lines[ $patchwork_index ];
+	unset( $lines[ $patchwork_index ] );
+	$lines = array_values( $lines );
+	array_splice( $lines, $opener_index + 1, 0, $patchwork_line );
+
+	if ( false === file_put_contents( $autoload_file, implode( '', $lines ) ) ) {
+		fwrite( STDERR, "modify-autoload: failed to write {$autoload_file}\n" );
+		exit( 1 );
+	}
+
+	$hoisted_any = true;
+}
+
+if ( $patchwork_installed && ! $hoisted_any ) {
+	fwrite( STDERR, "modify-autoload: WARNING - Patchwork is installed but its autoload entry was not hoisted; the unit suite may fail with Patchwork\\Exceptions\\DefinedTooEarly.\n" );
 }

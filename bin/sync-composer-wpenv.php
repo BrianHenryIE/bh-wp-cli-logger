@@ -69,4 +69,7 @@ $json = json_encode( $wpEnv, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_T
 // json_encode uses 4-space indentation; convert to 2-space to match .wp-env.json convention.
 $json = preg_replace_callback( '/^( +)/m', fn( $m ) => str_repeat( ' ', (int) ( strlen( $m[1] ) / 2 ) ), $json );
 
-file_put_contents( $wpEnvPath, $json . "\n" );
+if ( false === file_put_contents( $wpEnvPath, $json . "\n" ) ) {
+	fwrite( STDERR, "Failed to write {$wpEnvPath}\n" );
+	exit( 1 );
+}

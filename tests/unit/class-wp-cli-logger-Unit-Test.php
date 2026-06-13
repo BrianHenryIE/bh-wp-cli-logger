@@ -134,7 +134,7 @@ class WP_CLI_Logger_Unit_Test extends Unit_Testcase {
 		( new WP_CLI_Logger() )->emergency( 'The house is on fire.' );
 
 		$this->assertEquals(
-			array( array( 'Emergency:: The house is on fire.' ) ),
+			array( array( 'Emergency: The house is on fire.' ) ),
 			$this->error_multi_lines
 		);
 		$this->assertEmpty( $this->lines );
