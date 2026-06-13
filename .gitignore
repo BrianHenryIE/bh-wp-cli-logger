@@ -4,3 +4,4 @@
 /wp-content
 /test-plugin/class-bh-wp-cli-logger.php
 /test-plugin/vendor
+/tests/_output
