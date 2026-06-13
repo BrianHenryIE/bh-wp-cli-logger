@@ -10,20 +10,19 @@ namespace BrianHenryIE\WP_CLI_Logger_Test_Plugin;
 use Psr\Log\LogLevel;
 use WP_CLI;
 
-spl_autoload_register(
-	function ( $classname ) {
-		if ( 'BrianHenryIE\WP_CLI_Logger\WP_CLI_Logger' === $classname ) {
-			require_once __DIR__ . '/class-wp-cli-logger.php';
-		}
-	}
-);
-
-require_once __DIR__ . '/vendor/autoload.php';
+require_once dirname( __DIR__, 2 ) . '/dev-map/vendor/autoload.php';
 
 add_action(
 	'cli_init',
 	function (): void {
 		WP_CLI::add_command( 'cli-logger', '\BrianHenryIE\WP_CLI_Logger_Test_Plugin\test_command' );
+	}
+);
+
+add_action(
+	'admin_notices',
+	function () {
+		echo '<div class="notice notice-warning is-dismissible"><p>The BH WP-CLI Logger development plugin does not have a UI. In CLI run <code>wp help test-plugin</code>.</p></div>';
 	}
 );
 
