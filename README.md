@@ -120,10 +120,6 @@ I imagine there is a Composer package that provides the same utility as WooComme
 
 When WP CLI commands are appended with `--debug` or more specifically `--debug=my-plugin-slug`, all messages _should_ be output. This should be part of any `::should_handle()` function. 
 
-### psr/log >=2.0
-
-This currently requires `"psr/log": "^1.0"`. [v2.0](https://github.com/php-fig/log/compare/1.1.4...2.0.0) requires PHP 8.0 and introduces parameter types; [3.0](https://github.com/php-fig/log/compare/2.0.0...3.0.0) then introduces return types. 
-
 ### Context
 
 Context is not printed.
