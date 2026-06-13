@@ -52,6 +52,7 @@ class WP_CLI_Logger implements LoggerInterface {
 	 * @param array             $context Array of associated data.
 	 */
 	public function log( $level, string|Stringable $message, array $context = array() ): void {
+		$message = (string) $message;
 
 		/**
 		 * Only run when WP CLI is active.
