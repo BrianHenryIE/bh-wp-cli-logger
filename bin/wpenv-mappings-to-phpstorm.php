@@ -9,6 +9,10 @@
  * @package brianhenryie/bh-wp-private-uploads
  */
 
+if(!file_exists(dirname(__DIR__) . '/.idea/workspace.xml')) {
+    return;
+}
+
 // TODO: How to map WP CLI?
 
 $project_dir = is_file( dirname( __DIR__ ) . '/.wp-env.json' )
